@@ -1,4 +1,4 @@
-# Calculating surface areas to wrap boxes, with a little extra buffer
+#Calculating surface areas to wrap boxes, with a little extra buffer
 
 dimensions = input()
 fullOrder = []
