@@ -1,4 +1,4 @@
-#Finding MD5 hashes startin with 5 zeros.
+#Finding MD5 hashes starting with 6 zeros.
 
 import hashlib
 
