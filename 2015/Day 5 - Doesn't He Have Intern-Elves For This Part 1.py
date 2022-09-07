@@ -15,8 +15,7 @@ for string in textFile:
 
     #Creating flags to find out if a string is valid(nice)
     sameLetters, hasNaughtyPair = False, False
-    pastChar = ""
-    vowelCount = 0
+    pastChar, vowelCount = "", 0
 
     for char in string:
         if(char in "aeiou"):
