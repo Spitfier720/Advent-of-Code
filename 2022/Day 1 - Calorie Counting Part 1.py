@@ -1,18 +1,23 @@
 #Finding the maximum integer through formatted input.
 
-import sys
-
-input = [x for x in sys.stdin.readlines()]
+line = input()
 
 #We know that we have at least one reindeer, so we add an initial element to the list to prevent index errors.
-calories = [0]
+curCalories, maxCalories = 0, 0
 
-for calorie in input:
-    if(calorie == "\n"):
-        calories.append(0)
-    
+#-1 will be our terminating input.
+while(line != "-1"):
+    #Updating current counter.
+    if(line):
+        curCalories += int(line)
+
+    #Setting the maximum calorie count and resetting the counter.
     else:
-        #Take out the last element, update it, and put it back in.
-        calories.append(calories.pop() + int(calorie))
+        maxCalories = max(maxCalories, curCalories)
+        curCalories = 0
+    
+    line = input()
 
-print(max(calories))
+#Taking the last reindeer's calorie count into account as well.
+maxCalories = max(maxCalories, curCalories)
+print(maxCalories)
