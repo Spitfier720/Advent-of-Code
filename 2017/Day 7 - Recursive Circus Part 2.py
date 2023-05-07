@@ -2,7 +2,7 @@
 
 class Tree:
     def __init__(self):
-        self.__nodes = {}
+        self.__nodes = {} #Holds the node's name and a Node class that holds the rest of the information.
     
     def add(self, value, weight, outEdges):
         if(self.__nodes.get(value) == None):
@@ -18,10 +18,12 @@ class Tree:
             self.__nodes[x].addInDegree()
             self.__nodes[value].addOutEdges(x)
     
+    #Finding the root by finding the node with no edges leading to it.
     def findRoot(self):
         for x in self.__nodes:
             if(self.__nodes[x].getInDegree() == 0): return x
 
+    #Recursively finds the weight of a node and all of the weights of its respective descendants.
     def __getTotalWeight(self, node):
         weight = node.getWeight()
 
@@ -30,6 +32,7 @@ class Tree:
         
         return weight
     
+    #Using BFS to locate the imbalanced node, and returning its proper weight.
     def properWeight(self, root):
         queue = [root]
         imbalancedNode = ""
@@ -42,6 +45,7 @@ class Tree:
             for x in self.__nodes[curNode].getOutEdges():
                 weights.setdefault(self.__getTotalWeight(self.__nodes[x]), []).append(x)
             
+            #Located an imbalance, so we need to investigate further to see if a deeper node is our imbalanced node.
             if(len(weights) == 2):
                 weight1, weight2 = list(weights.keys())
 
@@ -56,7 +60,7 @@ class Tree:
                 queue.append(imbalancedNode)
             
             else:
-                if(not imbalancedNode):
+                if(not imbalancedNode): #Haven't found imbalanced node, check all out edges as they are all possibilities.
                     queue.extend(self.__nodes[curNode].getOutEdges())
         
         return self.__nodes[imbalancedNode].getWeight() - difference
