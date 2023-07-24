@@ -1,5 +1,7 @@
 #Using a grid and a predetermined slope, finding the number of obstacles in said grid.
 
+import sys
+
 #Finding the number of obstacles(trees) in the grid by following our slope.
 def numTrees(grid):
     length = len(grid[0]) - 1
@@ -15,4 +17,4 @@ def numTrees(grid):
     except IndexError:
         return numTrees
 
-import sys; print(numTrees(sys.stdin.readlines()))
+print(numTrees(sys.stdin.readlines()))
